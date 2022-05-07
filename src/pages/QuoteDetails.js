@@ -1,22 +1,26 @@
 import { Route } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Comments from "../components/comments/Comments";
+import HighlightedQuote from "../components/quotes/HighlightedQuote"
+
+const allQuotes = [{id:'1',author:'Author A', text:'1st quote'}, {id:'2',author:'Author B', text:'2nd quote'}];
 
 const QuoteDetails =()=> {
 
-    const allQuotes = [{id:'1', text:'1st quote'}, {id:'2', text:'2nd quote'}];
+    
     const params =useParams();
     //console.log('params');
     console.log('filteredQuote');
-    console.log(allQuotes.filter((quote)=>quote.id===params.id)[0]  );
+    const quote=allQuotes.filter((quote)=>quote.id===params.id)[0];
+    if(!quote){
+        return <p>No Quote Found</p>
+    }
+
     return(
     <section>
-        <h5>ID</h5>
-        <p>{params.id}</p>
-        <h5>QUOTE</h5>
-        <p>{allQuotes.filter((quote)=>quote.id===params.id)[0].text}</p>
+        <HighlightedQuote text={quote.text} author={quote.author}></HighlightedQuote>
         <Route path={`/quotes/${params.id}/comments`}>
-            <Comments />
+            <Comments /> 
         </Route>
     </section>)
 
