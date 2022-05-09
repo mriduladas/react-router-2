@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote"
@@ -19,6 +20,13 @@ const QuoteDetails =()=> {
     return(
     <section>
         <HighlightedQuote text={quote.text} author={quote.author}></HighlightedQuote>
+        <Route path={`/quotes/${params.id}`} exact>
+            <div className="centered">
+                <Link to={`/quotes/${params.id}/comments`} className='btn--flat'>
+                    Load Comments
+                </Link>
+            </div>
+        </Route>
         <Route path={`/quotes/${params.id}/comments`}>
             <Comments /> 
         </Route>
