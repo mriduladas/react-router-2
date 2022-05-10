@@ -3,13 +3,13 @@ import React,{Suspense } from "react";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import AllQuotes from "./pages/AllQuotes"
-import QuoteDetails from "./pages/QuoteDetails";
 import Layout from "./components/layout/layout";
-import NotFound from "./pages/NotFound";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 
 const NewQuote=React.lazy(()=> import("./pages/NewQuote"))
+const QuoteDetails=React.lazy(()=> import("./pages/QuoteDetails"))
+const NotFound = React.lazy(()=>import("./pages/NotFound"))
 
 function App() {
   return (
